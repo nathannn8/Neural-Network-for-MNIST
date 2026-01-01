@@ -1,0 +1,226 @@
+:root {
+    --bg-color: #0d0d12;
+    --card-bg: #1a1a24;
+    --accent-color: #6c5ce7;
+    --accent-hover: #5649c0;
+    --text-primary: #ffffff;
+    --text-secondary: #a0a0b0;
+    --success-color: #00b894;
+    --canvas-bg: #ffffff;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Outfit', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.container {
+    max-width: 900px;
+    width: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    min-height: 90vh;
+    /* Ensure footer pushes down */
+}
+
+header {
+    margin-bottom: 40px;
+}
+
+header h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    background: linear-gradient(135deg, #a8c0ff, #3f2b96);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+header p {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+}
+
+.main-content {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+    flex: 1;
+    /* Pushes footer down */
+}
+
+/* Canvas Area */
+.canvas-wrapper {
+    background-color: var(--card-bg);
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+canvas {
+    background-color: var(--canvas-bg);
+    border-radius: 10px;
+    cursor: crosshair;
+    touch-action: none;
+}
+
+/* Controls */
+.controls {
+    display: flex;
+    gap: 15px;
+    width: 100%;
+}
+
+.btn {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-family: inherit;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: transform 0.2s, opacity 0.2s;
+}
+
+.btn:active {
+    transform: scale(0.95);
+}
+
+.btn.primary {
+    background-color: var(--accent-color);
+    color: white;
+}
+
+.btn.primary:hover {
+    background-color: var(--accent-hover);
+}
+
+.btn.secondary {
+    background-color: transparent;
+    border: 2px solid var(--text-secondary);
+    color: var(--text-secondary);
+}
+
+.btn.secondary:hover {
+    border-color: var(--text-primary);
+    color: var(--text-primary);
+}
+
+/* Result Panel */
+.result-panel {
+    background-color: var(--card-bg);
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    width: 280px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.prediction-box,
+.confidence-box {
+    text-align: center;
+}
+
+.label {
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+    display: block;
+}
+
+#resultDigit {
+    font-size: 6rem;
+    font-weight: 700;
+    color: var(--accent-color);
+    line-height: 1;
+}
+
+/* Confidence Bar */
+.confidence-bar-bg {
+    width: 100%;
+    height: 10px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+.confidence-bar-fill {
+    height: 100%;
+    width: 0%;
+    background-color: var(--success-color);
+    transition: width 0.5s ease-out;
+}
+
+#resultConfidence {
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+/* Footer */
+footer {
+    margin-top: 40px;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+footer a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+footer a:hover {
+    color: var(--accent-color);
+    text-decoration: underline;
+}
+
+@media (max-width: 700px) {
+    .main-content {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .result-panel {
+        width: 100%;
+        max-width: 320px;
+        flex-direction: row;
+        justify-content: space-around;
+        padding: 20px;
+    }
+
+    #resultDigit {
+        font-size: 4rem;
+    }
+
+    canvas {
+        width: 240px;
+        height: 240px;
+    }
+}

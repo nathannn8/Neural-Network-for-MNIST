@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neural Digit</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>Neural Digit</h1>
+            <p>Draw a digit (0-9) and the NumPy implementation will guess it.</p>
+        </header>
+
+        <div class="main-content">
+            <div class="canvas-wrapper">
+                <canvas id="drawingCanvas" width="280" height="280"></canvas>
+                <div class="controls">
+                    <button id="clearBtn" class="btn secondary">Clear</button>
+                    <button id="predictBtn" class="btn primary">Predict</button>
+                </div>
+            </div>
+
+            <div class="result-panel">
+                <div class="prediction-box">
+                    <span class="label">Prediction</span>
+                    <h2 id="resultDigit">-</h2>
+                </div>
+                <div class="confidence-box">
+                    <span class="label">Confidence</span>
+                    <div class="confidence-bar-bg">
+                        <div id="confidenceFill" class="confidence-bar-fill"></div>
+                    </div>
+                    <span id="resultConfidence">0.00%</span>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            Developed by <a href="https://github.com/nathannn8" target="_blank">nathannn8</a>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+
+</html>
