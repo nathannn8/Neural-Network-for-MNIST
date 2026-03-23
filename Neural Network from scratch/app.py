@@ -36,29 +36,21 @@ def predict():
         img_bytes = base64.b64decode(image_data)
         img = Image.open(io.BytesIO(img_bytes))
         
-        # Preprocess image
-        # 1. Resize to 28x28 (using BICUBIC for better quality)
+
         img = img.resize((28, 28), Image.Resampling.BICUBIC)
         
-        # 2. Convert to Grayscale
+
         img = img.convert('L')
         
-        # 3. Invert colors (Canvas is usually black on white, MNIST is white on black)
-        # But wait, we'll style the canvas to be black with white drawing to match MNIST logic visually?
-        # Or standard white canvas with black ink?
-        # Standard: White canvas, black ink -> Invert to get Black background, white ink.
-        # Check pixel values.
-        
-        # Let's assume frontend sends standard white background with black drawing.
         img = ImageOps.invert(img)
         
-        # 4. Normalize to 0-1
+
         img_array = np.array(img) / 255.0
         
-        # 5. Flatten
+
         img_input = img_array.reshape(1, 784)
         
-        # Predict
+
         prediction, confidence = nn.predict(img_input)
         
         digit = int(prediction[0])
