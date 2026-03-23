@@ -36,21 +36,16 @@ def predict():
         img_bytes = base64.b64decode(image_data)
         img = Image.open(io.BytesIO(img_bytes))
         
-
         img = img.resize((28, 28), Image.Resampling.BICUBIC)
         
-
         img = img.convert('L')
         
         img = ImageOps.invert(img)
         
-
         img_array = np.array(img) / 255.0
         
-
         img_input = img_array.reshape(1, 784)
         
-
         prediction, confidence = nn.predict(img_input)
         
         digit = int(prediction[0])
